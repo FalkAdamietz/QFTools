@@ -59,7 +59,16 @@ If you want to calculate <0|Tphi(x_1)phi(x_2)phi(x_3)phi(x_3)|0> for a real scal
 ```bash
 python3 qftools.py --wick rsf all print 1 2 3 3
 ```
-The result is printed on the console due to the parameter 'print'. Note that |0> is the free vacuum.
+The result is printed on the console due to the parameter 'print'. Note that |0> is the free vacuum.\
+Output:
+```bash
+<0|T['1', '2', '3', '3']|0> =
+
+2 x [['1', '3'], ['2', '3']] +
+1 x [['1', '2'], ['3', '3']]
+process finished in 0.07 ms
+```
+This should be read as: <0|T['1', '2', '3', '3']|0> = 2 x <0|Tphi(x_1)phi(x_3)><0|Tphi(x_2)phi(x_3)|0> + 1 x <0|Tphi(x_1)phi(x_2)|0><0|Tphi(x_3)phi(x_3)|0>
 ## Update Notes
 ### Version 1.1.1
 Wick contraction for real scalar field now counts repeated contractions and prints the according multiple.
