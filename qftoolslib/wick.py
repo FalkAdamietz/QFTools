@@ -2,7 +2,7 @@
 
 
 from time import time
-
+from collections import Counter
 
 def wickContractions(field_type, fields, mode, output):
     start = time()
@@ -38,6 +38,32 @@ def wickContractions(field_type, fields, mode, output):
         print("process finished in {0:2.2f} s".format(dt))
 
 
+def countAllMultiples(res):
+    pairedList = []
+    for pseudo in range(len(res)):
+        pairedList.append([])
+    for i in range(len(res)):
+        for j in range(0, len(res[i]), 2):
+            pairedList[i].append(res[i][j:j+2])
+
+    for item in pairedList:
+        item.sort(key=lambda x: ((x[0], len(x[1]), float(x[1]))))
+
+
+    stringList = []
+    for item in pairedList:
+        stringList.append("{}".format(item))
+    dic = Counter(stringList)
+    uniqueResSet = set(stringList)
+    uniqueResList = list(uniqueResSet)
+    multiplierList = []
+    for item in uniqueResList:
+        multiplier = dic[item]
+        multiplierList.append(multiplier)
+
+    return multiplierList, uniqueResList
+
+
 def wickRealScalarField(fields, output):
     N = len(fields)
 
@@ -55,14 +81,17 @@ def wickRealScalarField(fields, output):
             for index2 in range(0, len(res[index])):
                 res[index][index2] = fields[res[index][index2]]
 
+        multiplierList, uniqueResList = countAllMultiples(res)
+
         if output == "print":
             print("<0|T{}|0> =".format(fields))
-
-            for i in range(len(res)):
-                if not i == len(res)-1:
-                    print("1x", res[i], "+")
+            print("")
+            for i in range(len(multiplierList)):
+                if not i == len(multiplierList) - 1:
+                    print("{} x {} +".format(multiplierList[i], uniqueResList[i]))
                 else:
-                    print("1x", res[i])
+                    print("{} x {}".format(multiplierList[i], uniqueResList[i]))
+
         elif output == "save":
             print("save")
         else:
