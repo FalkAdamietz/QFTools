@@ -4,13 +4,13 @@
 from time import time
 
 
-def wickContractions(field_type, fields, mode):
+def wickContractions(field_type, fields, mode, output):
     start = time()
     # real scalar field
     if field_type == "rsf":
 
         if mode == "all":
-            wickRealScalarField(fields)
+            wickRealScalarField(fields, output)
 
         elif mode == "vac":
             print("vac")
@@ -38,7 +38,7 @@ def wickContractions(field_type, fields, mode):
         print("process finished in {0:2.2f} s".format(dt))
 
 
-def wickRealScalarField(fields):
+def wickRealScalarField(fields, output):
     N = len(fields)
 
     if N % 2 == 0:
@@ -55,7 +55,18 @@ def wickRealScalarField(fields):
             for index2 in range(0, len(res[index])):
                 res[index][index2] = fields[res[index][index2]]
 
-        print("<0|T{}|0> = {}".format(fields, res))
+        if output == "print":
+            print("<0|T{}|0> =".format(fields))
+
+            for i in range(len(res)):
+                if not i == len(res)-1:
+                    print("1x", res[i], "+")
+                else:
+                    print("1x", res[i])
+        elif output == "save":
+            print("save")
+        else:
+            print("unknown output-type.")
 
         return
 
