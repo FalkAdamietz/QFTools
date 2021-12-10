@@ -1,5 +1,5 @@
 # QFTools
-Python lib to automate basic QFT calculations like Wick-contractions.
+Python lib to automate basic QFT calculations like Wick-contractions. Visit the [Wiki](https://github.com/Bra-A-Ket/QFTools/wiki) for additional information.
 ## Features
 - [x] Wick contractions for real scalar fields
 - [x] Print result of Wick contraction on console
@@ -84,14 +84,3 @@ This will create a new tex-file, which, in this case, looks like
 &=2\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{3})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{2})\hat{\phi}(x_{3})\vert 0\rangle
 \end{align}
 ```
-## Update Notes
-### Version 1.1.2
-- Export Wick-contractions for real scalar field as a csv-file
-- Generate LaTeX-file containing the Wick-contractions for the real scalar field
-- Code should be more readable due to added comments
-### Version 1.1.1
-Wick contraction for real scalar field now counts repeated contractions and prints the according multiple.
-### Version 1.1
-Updated README.md. Included output parameter for Wick contractions.
-### Version 1.0
-Initial upload of the programm. Only the basic file-structure and logic for real scalar field Wick contractions is implemented.
