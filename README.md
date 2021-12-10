@@ -33,7 +33,7 @@ python3 qftools.py -version
 ```console
 python3 qftools.py -help
 ```
-#### Wick contractions
+### Wick contractions
 ```console
 python3 qftools --wick <type> <mode> <output> <fields>
 ```
