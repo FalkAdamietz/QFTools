@@ -8,6 +8,16 @@ import csv
 import os
 
 def wickContractions(field_type, fields, mode, output):
+    """Handles all possible input parameter
+
+    parameter
+    ---------
+        - field_type : str - rsf, csf
+        - fields : list - list of the field-indices
+        - mode : str - all, vac, nvac
+        - output : str - output-mode
+    """
+
     start = time()
     # real scalar field
     if field_type == "rsf":
@@ -42,35 +52,60 @@ def wickContractions(field_type, fields, mode, output):
 
 
 def countAllMultiples(res):
-    pairedList = []
+    """Takes the result list of Wick contractions as input parameter and
+    calculates the combinatorial factor for each contraction.
+
+    parameter
+    ---------
+        - res : list - list of all Wick contractions
+
+    return
+    ------
+        - multiplierList : list - list of the combinatorial factors
+        - uniqueResList : list - list of the unique contractions
+    """
+
+    pairedList = []                                     # Make list out of tuple
     for pseudo in range(len(res)):
         pairedList.append([])
     for i in range(len(res)):
-        for j in range(0, len(res[i]), 2):
+        for j in range(0, len(res[i]), 2):              # grab always two fields
             pairedList[i].append(res[i][j:j+2])
 
+    # sort list since the product of vev's commutes
     for item in pairedList:
         item.sort(key=lambda x: ((x[0], len(x[1]), float(x[1]))))
 
-
+    # Count all multible entries
     stringList = []
     for item in pairedList:
         stringList.append("{}".format(item))
     dic = Counter(stringList)
-    uniqueResSet = set(stringList)
+    uniqueResSet = set(stringList)                      # due to order
     uniqueResList = list(uniqueResSet)
     multiplierList = []
     for item in uniqueResList:
         multiplier = dic[item]
         multiplierList.append(multiplier)
 
-    multiplierList.reverse()
-    uniqueResList.reverse()
+    multiplierList.reverse()                            # not necessary
+    uniqueResList.reverse()                             # not necessary
 
     return multiplierList, uniqueResList
 
 
 def wickOutput(multiplierList, uniqueResList, output, fields):
+    """Handles the output for Wick contractions.
+
+    parameter
+    ---------
+        - multiplierList : list - list of the combinatorial factors
+        - uniqueResList : list - list of the unique contractions
+        - output : str - output-mode
+        - field_type : str - rsf, csf
+    """
+
+    # print mode
     if output == "print":
         print("<0|T{}|0> =".format(fields))
         print("")
@@ -86,12 +121,15 @@ def wickOutput(multiplierList, uniqueResList, output, fields):
         print("different contractions: {}, total: {}".format(different, total))
         print("")
 
+    # csv mode
     elif output == "csv":
         fileName = ""
         for number in fields:
             fileName += str(number)
         fileName += ".csv"
         doesFileExist = os.path.isfile(fileName)
+
+        # does fileName exist
         if doesFileExist == True:
             overwriteFile = input("File {} already exist. Overwrite it? [y/n]".format(fileName))
             if overwriteFile == "y":
@@ -102,6 +140,7 @@ def wickOutput(multiplierList, uniqueResList, output, fields):
             else:
                 print("unknown input. process stopped.")
 
+        # if fileName does not exist
         else:
             with open(fileName, "w") as csv_file:
                 writer = csv.writer(csv_file, delimiter=",")
@@ -113,6 +152,7 @@ def wickOutput(multiplierList, uniqueResList, output, fields):
             print("File {} successfully created.".format(fileName))
             print("")
 
+    # latex mode
     elif output == "latex":
         fileName = ""
         for number in fields:
@@ -149,6 +189,7 @@ def wickOutput(multiplierList, uniqueResList, output, fields):
                 tex_file.write(string)
                 factors = uniqueResList[0]
 
+                # get indices of fields like that since type(factors) == str
                 indexList = []
                 for char in factors:
                     try:
@@ -210,16 +251,24 @@ def wickOutput(multiplierList, uniqueResList, output, fields):
 
 
 def wickRealScalarField(fields, output):
+    """Initiates the Wick contractions for the real scalar field.
+
+    parameter
+    ---------
+        - fields : list - list of the field-indices
+        - output : str - output-mode
+    """
+
     N = len(fields)
 
     if N % 2 == 0:
 
         nums = ''.join(fields)
-        #print("nums = ", nums)
+
         index_list = []
         for i in range(len(fields)):
             index_list.append(i)
-        #print("index_list = ", index_list)
+
         res = pairgroup(index_list)
 
         for index in range(0, len(res)):
@@ -244,6 +293,16 @@ class TupleAndMissingFriends:
 
 
 def getStartTuples(index_list):
+    """Creates list for the start tuples of Wick contraction
+
+    parameter
+    ---------
+        - index_list : list - index list of fields
+
+    return
+    ------
+        - startTupleList : list - list of the start-tuples
+    """
 
     startTupleList = []
     for tupleIndex in range(1, len(index_list)):
@@ -259,6 +318,17 @@ def getStartTuples(index_list):
 
 
 def pairgroup(index_list):
+    """Find all possible Wick contractions.
+
+    parameter
+    --------
+        - index_list : list - index list of fields
+
+    return
+    ------
+        - pairedList : list - Wick contractions
+    """
+    
     if len(index_list) == 2:
         return [[index_list[0], index_list[1]]]
     pairedList = []
@@ -274,16 +344,3 @@ def pairgroup(index_list):
             pairedList.append(comboList)
 
     return pairedList
-
-
-def containsIdenticalIndexes(tupleList, checkTuple):
-    for i in range(len(tupleList)):
-        if checkTuple[0] in tupleList[i] or checkTuple[1] in tupleList[i]:
-            return True
-    return False
-
-
-def hasIdenticalIndexes(baseTuple, checkTuple):
-    if baseTuple[0] == checkTuple[0] or baseTuple[0] == checkTuple[1] or baseTuple[1] == checkTuple[0] or baseTuple[1] == checkTuple[1]:
-        return True
-    return False

@@ -86,9 +86,9 @@ This will create a new tex-file, which, in this case, looks like
 ```
 ## Update Notes
 ### Version 1.1.2
-New features:
 - Export Wick-contractions for real scalar field as a csv-file
 - Generate LaTeX-file containing the Wick-contractions for the real scalar field
+- Code should be more readable due to added comments
 ### Version 1.1.1
 Wick contraction for real scalar field now counts repeated contractions and prints the according multiple.
 ### Version 1.1
