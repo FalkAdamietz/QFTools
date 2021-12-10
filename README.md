@@ -4,7 +4,7 @@ Python lib to automate basic QFT calculations like Wick-contractions.
 - [x] Wick contractions for real scalar fields
 - [x] Print result of Wick contraction on console
 - [x] Save result of Wick contraction in a csv-file
-- [ ] Generate LaTeX-file of the Wick contractions
+- [x] Generate LaTeX-file of the Wick contractions
 - [ ] Wick contractions for complex scalar fields
 - [ ] Distingish between vacuum and non-vacuum contractions
 ## Setup
@@ -98,12 +98,15 @@ python3 qftools.py --wick rsf all latex 1 2 3 3
 This will create a new tex-file, which, in this case, looks like
 ```latex
 \begin{align}
-\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle &=1\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle\\
-&=2\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{3})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{2})\hat{\phi}(x_{3})\vert 0\rangle
+\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle \
+&=1\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle\\ \
+
+&=2\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{3})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{2})\hat{\phi}(x_{3})\vert 0\rangle \
+
 \end{align}
 ```
 ## Update Notes
-## Version 1.1.1
+### Version 1.1.2
 New features:
 - Export Wick-contractions for real scalar field as a csv-file
 - Generate LaTeX-file containing the Wick-contractions for the real scalar field
