@@ -24,43 +24,24 @@ python3 -m pip install numpy
 ```
 ## Usage / List of Commands
 ### Basic Usage
-QFTools takes simple opt-inputs. To see the version simple execute via console
-```console
-python3 qftools.py -v
-```
-The help menu is available via
-```console
-python3 qftools.py -h
-```
+QFTools takes simple opt-inputs. In the following all available commands are listed.
 ### Check current verion
-```console
-python3 qftools.py -v
-```
-or
 ```console
 python3 qftools.py -version
 ```
 ### Help menu
 ```console
-python3 qftools.py -h
-```
-or
-```console
 python3 qftools.py -help
 ```
 #### Wick contractions
 ```console
-python3 qftools -w <type> <mode> <output> <fields>
-```
-or
-```console
 python3 qftools --wick <type> <mode> <output> <fields>
 ```
 where the parameters are:\
-<ins>type</ins> : rsf (for real scalar field), csf (for complex scalar field)\
-<ins>mode</ins> : all (list all possible contractions), vac (only vacuum-like contractions), nvac (only non-vacuum-like contractions)\
-<ins>output</ins> : print (print contractions on console), csv (save contractions in csv-file), latex (generate LaTeX-file)\
-<ins>fields</ins> : numbered fields, such that the number symolizes the argument of the field, e.g. 1 2 3 3 (note the spacing)
+**type**: *rsf* (for real scalar field), *csf* (for complex scalar field)\
+**mode** : *all* (list all possible contractions), *vac* (only vacuum-like contractions), *nvac* (only non-vacuum-like contractions)\
+**output** : *print* (print contractions on console), *csv* (save contractions in csv-file), *latex* (generate LaTeX-file)\
+**fields** : numbered fields, such that the number symolizes the argument of the field, e.g. 1 2 3 3 (note the spacing)
 ### Examples
 #### Print-Mode
 If you want to calculate <0|T phi(x_1) phi(x_2) phi(x_3) phi(x_3)|0> for a real scalar field phi including all contractions, simply use
