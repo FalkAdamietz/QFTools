@@ -19,13 +19,13 @@ def help():
     print("")
     print("type: rsf (real scalar field), csf (complex scalar field)")
     print("mode: all, vac (vacuum only), nvac (non-vacuum only)")
-    print("output: print (prints result on console), save (saves result in csv-file)")
+    print("output: print (prints result on console), csv (saves result in csv-file), latex (generate LaTeX-file)")
     print("fields: numbered fields, e.g. 1 2 3 3 (note the spacing)")
     print("")
 
 
 def main():
-    version = 1.1
+    version = "1.1.2"
 
     short = "vhw"
     long = [
