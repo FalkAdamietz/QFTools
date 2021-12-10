@@ -98,11 +98,9 @@ python3 qftools.py --wick rsf all latex 1 2 3 3
 This will create a new tex-file, which, in this case, looks like
 ```latex
 \begin{align}
-\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle \
-&=1\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle\\ \
-
-&=2\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{3})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{2})\hat{\phi}(x_{3})\vert 0\rangle \
-
+\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle
+&=1\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{2})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{3})\hat{\phi}(x_{3})\vert 0\rangle\\
+&=2\cdot\langle 0\vert\mathcal{T}\hat{\phi}(x_{1})\hat{\phi}(x_{3})\vert 0\rangle\langle 0\vert\mathcal{T}\hat{\phi}(x_{2})\hat{\phi}(x_{3})\vert 0\rangle
 \end{align}
 ```
 ## Update Notes
