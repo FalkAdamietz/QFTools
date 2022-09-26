@@ -1,4 +1,10 @@
 # QFTools
+```diff
+! Project merge
+```
+This algorithm to calculate Wick contractions is now merged with [phypy](https://github.com/Bra-A-Ket/phypy). This repo will not be updated anymore.
+
+
 Python lib to automate basic QFT calculations like Wick-contractions. Visit the [Wiki](https://github.com/Bra-A-Ket/QFTools/wiki) for additional information.
 ## Features
 - [x] Wick contractions for real scalar fields
